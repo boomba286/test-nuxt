@@ -15,7 +15,6 @@ export default {
   },
   methods: {
     changed(event) {
-      console.log('changed');
       const place = event.detail
       if(!place.geometry) return
 
