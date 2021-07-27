@@ -2,22 +2,22 @@
   {
     "name": "search",
     "path": "/search",
-    "component": "/Volumes/data/learn/node/framework/vue/vuex/NuxtBnB/pages/search.vue",
+    "component": "/Volumes/data/learn/node/framework/vue/nuxtjs/NuxtBnB/pages/search.vue",
     "chunkName": "pages/search",
-    "_name": "_fcda6504"
+    "_name": "_ba673f38"
   },
   {
     "name": "home-id",
     "path": "/home/:id?",
-    "component": "/Volumes/data/learn/node/framework/vue/vuex/NuxtBnB/pages/home/_id.vue",
+    "component": "/Volumes/data/learn/node/framework/vue/nuxtjs/NuxtBnB/pages/home/_id.vue",
     "chunkName": "pages/home/_id",
-    "_name": "_3e150be0"
+    "_name": "_11950574"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/Volumes/data/learn/node/framework/vue/vuex/NuxtBnB/pages/index.vue",
+    "component": "/Volumes/data/learn/node/framework/vue/nuxtjs/NuxtBnB/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_86d98d28"
+    "_name": "_4a08b1c6"
   }
 ]
