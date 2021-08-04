@@ -9,7 +9,8 @@ export default function({ $config }, inject) {
     getHome,
     getUserByHomeId,
     getReviewsByHomeId,
-    getHomesByLocation
+    getHomesByLocation,
+    getHomes
   })
 
   async function getHome(homeId) {
@@ -41,7 +42,23 @@ export default function({ $config }, inject) {
     }
   }
 
-  async function getHomesByLocation(lat, lng, radiusInMeters = 1500) {
+  async function getReviewsByHomeId(homeId){
+    try {
+      return unWrap(await fetch(`https://${$config.algolia.appId}-dsn.algolia.net/1/indexes/reviews/query`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({
+          filters: `homeId:${homeId}`,
+          hitsPerPage: 6,
+          attributesToHighlight: [],
+        })
+      }))
+    } catch(error){
+        return getErrorResponse(error)
+    }
+  }
+
+  async function getHomesByLocation(lat, lng, radiusInMeters = 1500 * 15) {
     try {
       return unWrap(
         await fetch(`https://${$config.algolia.appId}-dsn.algolia.net/1/indexes/homes/query`, {
@@ -60,17 +77,15 @@ export default function({ $config }, inject) {
     }
   }
 
-
-  async function getReviewsByHomeId(homeId) {
+  async function getHomes() {
     try {
       return unWrap(
-        await fetch(`https://${$config.algolia.appId}-dsn.algolia.net/1/indexes/reviews/query`, {
+        await fetch(`https://${$config.algolia.appId}-dsn.algolia.net/1/indexes/homes/query`, {
           headers,
           method: 'POST',
           body: JSON.stringify({
-            filters: `homeId: ${homeId}`,
-            hitsPerPage: 2,
-            attributesToHighlight: []
+            hitsPerPage: 3,
+            attributesToHighlight: [],
           })
         })
       )
@@ -78,6 +93,5 @@ export default function({ $config }, inject) {
       return getErrorResponse(error)
     }
   }
-
 
 }

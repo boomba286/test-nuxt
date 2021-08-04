@@ -1,5 +1,35 @@
 [
   {
+    "name": "admin",
+    "path": "/admin",
+    "component": "/Volumes/data/learn/node/framework/vue/nuxtjs/NuxtBnB/pages/admin.vue",
+    "chunkName": "pages/admin",
+    "children": [
+      {
+        "name": "admin-homes",
+        "path": "homes",
+        "component": "/Volumes/data/learn/node/framework/vue/nuxtjs/NuxtBnB/pages/admin/homes.vue",
+        "chunkName": "pages/admin/homes",
+        "_name": "_e18b68b0"
+      },
+      {
+        "name": "admin-test",
+        "path": "test",
+        "component": "/Volumes/data/learn/node/framework/vue/nuxtjs/NuxtBnB/pages/admin/test.vue",
+        "chunkName": "pages/admin/test",
+        "_name": "_58ffaf0e"
+      }
+    ],
+    "_name": "_7b7805c3"
+  },
+  {
+    "name": "no-access",
+    "path": "/no-access",
+    "component": "/Volumes/data/learn/node/framework/vue/nuxtjs/NuxtBnB/pages/no-access.vue",
+    "chunkName": "pages/no-access",
+    "_name": "_f95efa38"
+  },
+  {
     "name": "search",
     "path": "/search",
     "component": "/Volumes/data/learn/node/framework/vue/nuxtjs/NuxtBnB/pages/search.vue",

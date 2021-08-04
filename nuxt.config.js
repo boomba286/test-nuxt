@@ -22,9 +22,28 @@ export default {
   ],
   modules: [
     '~/modules/auth',
-    '~/modules/algolia'
+    '~/modules/algolia',
+    '~/modules/cloudinary',
+    '@nuxtjs/cloudinary'
   ],
-  buildModules: ['@nuxtjs/tailwindcss'],
+  buildModules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxt/image'
+  ],
+  cloudinary: {
+    cloudName: 'de5msdgdj',
+  },
+  image: {
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/de5msdgdj/image/upload/'
+    }
+  },
+  serverMiddleware: [
+    function(req, res, next) {
+      console.log(req.body)
+      next()
+    }
+  ],
   css: ['~/assets/sass/app.scss'],
   build: {
     extractCSS: true,
@@ -40,13 +59,18 @@ export default {
     algolia: {
       appId: 'NCSWKIZ0F2',
       key: 'a5d2484281b264b5ef6d3204662db516',
-    }
+    },
+    cloudinary: {
+      apiKey: '488191814516587',
+    } 
   },
   privateRuntimeConfig: {
     algolia: {
       appId: 'NCSWKIZ0F2',
       key: '5374e6ea1d34feb12b098ce3ff6deafa',
+    },
+    cloudinary:{
+      apiSecret: 'R2nPsknYI0ADfoiYvGXWIMhoka0',
     }
-  },
-  serverMiddleware: []
+  }
 }
