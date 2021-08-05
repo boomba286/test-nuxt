@@ -17,14 +17,17 @@ export default {
   },
   plugins: [
     '~/plugins/maps.client',
-    '~/plugins/dataApi.js',
-    '~/plugins/auth.client.js'
+    '~/plugins/dataApi',
+    '~/plugins/auth.client',
+    '~/plugins/vCalendar.client',
+    '~/plugins/stripe.client'
   ],
   modules: [
     '~/modules/auth',
     '~/modules/algolia',
     '~/modules/cloudinary',
-    '@nuxtjs/cloudinary'
+    '~/modules/stripe',
+    '@nuxtjs/cloudinary',
   ],
   buildModules: [
     '@nuxtjs/tailwindcss',
@@ -62,7 +65,10 @@ export default {
     },
     cloudinary: {
       apiKey: '488191814516587',
-    } 
+    },
+    stripe: {
+      key: "pk_test_51JKwuOAcQ07H4HJdk65vTfjwJRkqE3nsfyFuBaY3wNrt5w5lpHhE7qgip0ZmaBqcgtSHHtcXSSfVZgZZ5Zv5uMS800r1sNogpV"
+    },
   },
   privateRuntimeConfig: {
     algolia: {
@@ -71,6 +77,9 @@ export default {
     },
     cloudinary:{
       apiSecret: 'R2nPsknYI0ADfoiYvGXWIMhoka0',
+    },
+    stripe: {
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY
     }
   }
 }

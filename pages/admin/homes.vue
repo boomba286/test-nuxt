@@ -7,11 +7,11 @@
     <h2 class="text-xl bold">Add a Home</h2>
     <form class="form" @submit.prevent="onSubmit">
       Images: <br />
-      <ImageUploader  @file-uploaded="imageUpdated($event, 0)" />
-      <ImageUploader  @file-uploaded="imageUpdated($event, 1)" />
-      <ImageUploader  @file-uploaded="imageUpdated($event, 2)" />
-      <ImageUploader  @file-uploaded="imageUpdated($event, 3)" />
-      <ImageUploader  @file-uploaded="imageUpdated($event, 4)" />
+      <ImageUploader @file-uploaded="imageUpdated($event, 0)" />
+      <ImageUploader @file-uploaded="imageUpdated($event, 1)" />
+      <ImageUploader @file-uploaded="imageUpdated($event, 2)" />
+      <ImageUploader @file-uploaded="imageUpdated($event, 3)" />
+      <ImageUploader @file-uploaded="imageUpdated($event, 4)" />
       Title: <br />
       <input type="text" v-model="home.title" class="w-60"><br />
       Description:<br />
@@ -37,6 +37,20 @@
       State: <input type="text" v-model="home.location.state" class="w-26"><br />
       Postal Code: <input type="text" v-model="home.location.postalCode" class="w-26"><br />
       Country: <input type="text" v-model="home.location.country" class="w-26"><br />
+      <date-picker
+        v-for="(range, index) in home.availabilityRanges"
+        :key="index"
+        v-model="home.availabilityRanges[index]"
+        is-range
+        timezone="UTC"
+        :modelConfig="{ timeAdjust: '00:00:00' }"
+      >
+        <template v-slot="{ inputValue, inputEvents }">
+          <input :value="inputValue.start" v-on="inputEvents.start" />
+          to
+          <input :value="inputValue.end" v-on="inputEvents.end" /><br />
+        </template>
+      </date-picker>
       <button class="border px-4 py-2 border-gray-400">Add</button>
     </form>
   </div>
@@ -72,13 +86,14 @@ export default {
           lat: '',
           lng: '',
         },
-        images: [
-          'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-          'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=81',
-          'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=82',
-          'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=83',
-          'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=84'
-        ]
+        images: [],
+        availabilityRanges: [{
+          start: '',
+          end: ''
+        }, {
+          start: '',
+          end: ''
+        }]
       }
     }
   },

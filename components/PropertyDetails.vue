@@ -22,11 +22,21 @@
         <div class="app-price">
           ${{ home.pricePerNight }}<span> / night</span>
         </div>
-        <div class="app-search">
-          <input type="text" class="datepicker" placeholder="Check in">
-          <input type="text" class="datepicker" placeholder="Check out">
-        </div>
-        <button class="app-big-button">
+        <client-only>
+          <date-picker
+            v-model="range"
+            is-range
+            timezone="UTC"
+            :modelConfig="{ timeAdjust: '00:00:00' }"
+            class="app-search"
+          >
+            <template v-slot="{ inputValue, inputEvents }">
+              <input calss="datepicker" :value="inputValue.start" v-on="inputEvents.start" />
+              <input calss="datepicker" :value="inputValue.end" v-on="inputEvents.end" />
+            </template>
+          </date-picker>
+        </client-only>
+        <button class="app-big-button" @click="checkout">
           Request to book!
         </button>
       </div>
@@ -38,14 +48,32 @@
 import pluralize from '~/utils/pluralize'
 
 export default {
+  data() {
+    return {
+      range: {
+        start: null,
+        end: null
+      }
+    }
+  },
   props: {
     home: {
       type: Object,
       required: true,
     }
   },
+  mounted() {
+    if(this.$route.query.result == 'success') {
+      alert('Success!')
+    }
+  },
   methods: {
-    pluralize
-  }
+    pluralize,
+    checkout() {
+      const start = this.range.start.getTime() / 1000
+      const end = this.range.end.getTime() / 1000
+      this.$stripe.checkout(this.home.objectID, start, end)
+    }
+  },
 }
 </script>

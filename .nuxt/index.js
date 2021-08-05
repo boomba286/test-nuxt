@@ -18,8 +18,10 @@ import nuxt_plugin_pluginclient_4374c30a from 'nuxt_plugin_pluginclient_4374c30a
 import nuxt_plugin_pluginserver_43ff1003 from 'nuxt_plugin_pluginserver_43ff1003' // Source: ./cloudinary/plugin.server.js (mode: 'server')
 import nuxt_plugin_image_144603da from 'nuxt_plugin_image_144603da' // Source: ./image.js (mode: 'all')
 import nuxt_plugin_maps_6ed989cc from 'nuxt_plugin_maps_6ed989cc' // Source: ../plugins/maps.client (mode: 'client')
-import nuxt_plugin_dataApi_90f6f446 from 'nuxt_plugin_dataApi_90f6f446' // Source: ../plugins/dataApi.js (mode: 'all')
-import nuxt_plugin_authclient_79f5427c from 'nuxt_plugin_authclient_79f5427c' // Source: ../plugins/auth.client.js (mode: 'client')
+import nuxt_plugin_dataApi_3cd42dda from 'nuxt_plugin_dataApi_3cd42dda' // Source: ../plugins/dataApi (mode: 'all')
+import nuxt_plugin_auth_6442cd9b from 'nuxt_plugin_auth_6442cd9b' // Source: ../plugins/auth.client (mode: 'client')
+import nuxt_plugin_vCalendar_7837889b from 'nuxt_plugin_vCalendar_7837889b' // Source: ../plugins/vCalendar.client (mode: 'client')
+import nuxt_plugin_stripe_16926cd6 from 'nuxt_plugin_stripe_16926cd6' // Source: ../plugins/stripe.client (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -236,12 +238,20 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_maps_6ed989cc(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_dataApi_90f6f446 === 'function') {
-    await nuxt_plugin_dataApi_90f6f446(app.context, inject)
+  if (typeof nuxt_plugin_dataApi_3cd42dda === 'function') {
+    await nuxt_plugin_dataApi_3cd42dda(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_authclient_79f5427c === 'function') {
-    await nuxt_plugin_authclient_79f5427c(app.context, inject)
+  if (process.client && typeof nuxt_plugin_auth_6442cd9b === 'function') {
+    await nuxt_plugin_auth_6442cd9b(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_vCalendar_7837889b === 'function') {
+    await nuxt_plugin_vCalendar_7837889b(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_stripe_16926cd6 === 'function') {
+    await nuxt_plugin_stripe_16926cd6(app.context, inject)
   }
 
   // Lock enablePreview in context
